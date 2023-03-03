@@ -1,0 +1,121 @@
+Q1. Which keyword is used to create a function? Create a function to return a list of odd numbers in the
+range of 1 to 25.
+Ans:- The def keyword is used to create, (or define) a function.
+
+def abs():
+    for i in range(1,26):
+        if i%2!=0:
+            print(i)
+
+
+Q2. Why *args and **kwargs is used in some functions? Create a function each for *args and **kwargs to
+demonstrate their use.
+Ans:- You can use *args and **kwargs as arguments of a function when you are unsure about the number of arguments to pass in the functions.
+
+using *args
+def sum(*numbers):
+    total=0
+    for num in numbers:
+        total+=num
+    return total
+
+
+>>sum(2, 3, 5, 7, 9)
+>>26
+
+>>using **kwargs
+>>def dic(**anubhav):
+>>	print(anubhav)
+
+    
+>>dic(anubhav=23,tanu=24,prathna=25)
+>>{'anubhav': 23, 'tanu': 24, 'prathna': 25}
+
+
+Q3. What is an iterator in python? Name the method used to initialise the iterator object and the method
+used for iteration. Use these methods to print the first five elements of the given list [2, 4, 6, 8, 10, 12, 14, 16,
+18, 20].
+Ans:-An iterator is an object that contains a countable number of values.
+
+An iterator is an object that can be iterated upon, meaning that you can traverse through all the values.
+
+Technically, in Python, an iterator is an object which implements the iterator protocol, which consist of the methods __iter__() and __next__().
+
+list = [2, 4, 6, 8, 10, 12, 14, 16,18,20]
+for i in list:
+	print(i)
+
+Q4. What is a generator function in python? Why yield keyword is used? Give an example of a generator
+function.
+Ans:-
+Let us understand how a generator function is different from a normal function.
+
+There are 2 functions normal_test() and generator_test().
+
+Both the functions are suppose to return back the string “Hello World”. The normal_test() is using return and generator_test() is using yield.
+
+# Normal function
+def normal_test():
+    return "Hello World"
+	
+#Generator function
+def generator_test():
+	yield "Hello World"
+print(normal_test()) #call to normal function
+print(generator_test()) # call to generator function
+Output:
+
+Hello World
+<generator object generator_test at 0x00000012F2F5BA20>
+The output shows that when you call the normal function normal_test() it returns Hello World string. For a generator function with yield keyword it returns <generator object generator_test at 0x00000012F2F5BA20> and not the string.
+
+This is the main difference between a generator function and a normal function. Now to get the value from the generator object we need to either use the object inside for loop or use next() method or make use of list().
+
+print(next(generator_test()))  # will output Hello World
+One more difference to add to normal function v/s generator function is that when you call a normal function the execution will start and stop when it gets to return and the value is returned to the caller. So when the execution starts you cannot stop the normal function in between and it will only stop when it comes across return keyword.
+
+But in case of generator function once the execution starts when it gets the first yield it stops the execution and gives back the generator object. You can use the generator object to get the values and also, pause and resume back as per your requirement.
+
+
+
+
+
+Q5. Create a generator function for prime numbers less than 1000. Use the next() method to print the
+first 20 prime numbers.
+Ans:-
+def prime(x):
+    for i in range(2,x+1):
+        c=0
+        for j in range(2,i):
+            if(i%j)==0:
+                c+=1
+        if c==0:
+            yield i
+
+            
+num=prime(1000)
+for i in range(1,21):
+    print(next(num))
+
+    
+2
+3
+5
+7
+11
+13
+17
+19
+23
+29
+31
+37
+41
+43
+47
+53
+59
+61
+67
+71
+
